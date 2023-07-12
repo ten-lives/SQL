@@ -20,7 +20,7 @@ INSERT INTO products VALUES (15, "Cannondale", 5900, 8, "CAAD 13", 99);
 
 --display the database ordered by price
 SELECT * FROM store
-ORDER BYE price desc;
+ORDER BY price desc;
 
 --What are the 10 most popular items
 SELECT id, name, price, description, popularity 
