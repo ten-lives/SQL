@@ -1,3 +1,7 @@
+# This project reveals insights about TV and Movie content hosted on Netflix. 
+
+# The project was written using the PostgreSQL dialect and utilized data from the following two Netflix datasets:
+
 CREATE TABLE netflix_titles_info
     ("show_id" varchar(5), "type" varchar(7), "title" varchar(58), "country" varchar(74), "date_added" timestamp, "release_year" int, "rating" varchar(5), "duration" varchar(9), "listed_in" varchar(74))
 ;
@@ -68,24 +72,26 @@ titles.date_added
   ON people.show_id = titles.show_id
 ;
 
---Displays the number of titles that are movies
+# The following SQL was written to answer specific questions about the content on Netflix:
+
+#1 Displays the number of titles that are movies
 SELECT COUNT (*)
 FROM "netflix_titles_info"
 WHERE type = 'Movie'
 ; 
 
---Displays recently added title
+#2 Displays recently added title
 SELECT MAX (date(date_added))
 FROM "netflix_titles_info"
 ;
 
---Displays all titles in alphabetical order
+#3 Displays all titles in alphabetical order
 SELECT title, type
 FROM netflix_titles_info
 ORDER BY "title" asc
 ;
 
---Displays director for specific movie
+#4 Displays director for specific movie
 SELECT people.director, title.title
 FROM "netflix_people" people
 LEFT JOIN "netflix_titles_info" title
@@ -93,7 +99,7 @@ ON people.show_id = title.show_id
 WHERE title.title = 'The Starling'
 ;
 
---Displays oldest movie in db and release year
+#5 Displays oldest movie in db and release year
 SELECT "title", "release_year"
 FROM "netflix_titles_info" title
 WHERE type='Movie'
